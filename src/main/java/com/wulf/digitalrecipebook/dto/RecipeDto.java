@@ -1,4 +1,4 @@
-package com.wulf.digitalrecipebook.model.recipe;
+package com.wulf.digitalrecipebook.dto;
 
 import java.sql.Blob;
 import java.time.LocalDateTime;
@@ -6,36 +6,54 @@ import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.wulf.digitalrecipebook.model.recipe.EaseLevel;
+import com.wulf.digitalrecipebook.model.recipe.Equipment;
+import com.wulf.digitalrecipebook.model.recipe.FoodorDrink;
+import com.wulf.digitalrecipebook.model.recipe.Ingredient;
+import com.wulf.digitalrecipebook.model.recipe.Meal;
+import com.wulf.digitalrecipebook.model.recipe.Recipe;
+import com.wulf.digitalrecipebook.model.recipe.Seasonality;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-//import javax.persistence.Id;
 
 
-@Entity
-//@Component
-public class Recipe {
+public class RecipeDto {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	public RecipeDto() {
+		super();
+	}
+
+	public RecipeDto(int id2, String name2, String description2, double version2, Set<Ingredient> ingredients2,
+			List<String> method2, int servings2, LocalDateTime prepTime2, LocalDateTime activeTime2,
+			LocalDateTime totalTime2, List<Equipment> equipment2, Set<Recipe> pairings2, List<String> notes2,
+			int rating2, String author2, FoodorDrink foodOrDrink2, List<Blob> pictures2,
+			List<Recipe> oftenMadeAlongside2, Seasonality seasonality2, List<String> tags2, List<Recipe> pairsWith2,
+			Boolean notesInPlaceCollapse2, String origin2, EaseLevel easeLevel2, Meal meal2, String category2,
+			String howToStore2, String howToReheat2, String howToFreeze2, List<String> howToUseRepurposeLeftoversIdeas2,
+			List<Recipe> dishesThatAlsoUseLeftoverIngredients2, List<Recipe> mealAffinities2, LocalDateTime lastCooked2,
+			LocalDateTime created2, List<LocalDateTime> allDatesCooked2, List<LocalDateTime> allDatesUpdated2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	private int id;
 	
-	// changed this since ran the program last..comment out below line if issues occur
-	@Column(nullable = false)
+
 	private String name;
 	
 	private String description;
 	
 	private double version;
 	
-	@JsonManagedReference
-	@ManyToMany
 	private Set<Ingredient> ingredients; 
 	
 	private List<String> method;
@@ -48,50 +66,34 @@ public class Recipe {
 	
 	private LocalDateTime totalTime;
 	
-	//@Enumerated(EnumType.STRING)
-	@OneToMany
 	private List<Equipment> equipment;
 	
-	@ManyToMany
 	private Set<Recipe> pairings;
 
-	/**
-	//@OneToMany
-	//@ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
-	@ElementCollection // 1
-    @CollectionTable(name = "recipe_notes", joinColumns = @JoinColumn(name = "id")) // 2
-    @Column(name = "notes") // 3
-    */
 	private List<String> notes;
 	
 	private int rating;
 	
 	private String author;
 	
-	//@Enumerated(EnumType.STRING)
 	private FoodorDrink foodOrDrink; 
 	
 	private List<Blob> pictures;
 	
-	@ManyToMany
 	private List<Recipe> oftenMadeAlongside; // in the same meal/ dish/ within 7 days of that recipe/ etc
 	
-	//@Enumerated(EnumType.STRING)
 	private Seasonality seasonality;
 	
 	private List<String> tags;
 
-	@ManyToMany
 	private List<Recipe> pairsWith;
 	
 	private Boolean notesInPlaceCollapse;
 	
 	private String origin;
 	
-	//@Enumerated(EnumType.STRING)
 	private EaseLevel easeLevel;
 	
-	//@Enumerated(EnumType.STRING)
 	private Meal meal;
 	
 	private String category;
@@ -106,10 +108,8 @@ public class Recipe {
 	
 	private List<String> howToUseRepurposeLeftoversIdeas;
 	
-	@ManyToMany
 	private List<Recipe> dishesThatAlsoUseLeftoverIngredients;
 	
-	@ManyToMany
 	private List<Recipe> mealAffinities; // this goes really well w/ _ meals in the week 
 	
 	// date/time
@@ -121,80 +121,6 @@ public class Recipe {
 	private List<LocalDateTime> allDatesCooked;
 	
 	private List<LocalDateTime> allDatesUpdated;
-
-
-
-	public Recipe() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	public Recipe(String name) {
-		super();
-		this.name = name;
-		//this.created = LocalDateTime.now();
-		this.version = 1.0;
-	}
-	
-	public Recipe(String name, String description)  {
-		super();
-		this.name = name;
-		this.description = description;
-		this.version = 1.0;
-	}
-	
-
-	
-
-	public Recipe(int id, String name, String description, double version, Set<Ingredient> ingredients,
-			List<String> method, int servings, LocalDateTime prepTime, LocalDateTime activeTime,
-			LocalDateTime totalTime, List<Equipment> equipment, Set<Recipe> pairings, List<String> notes, int rating,
-			String author, FoodorDrink foodOrDrink, List<Blob> pictures, List<Recipe> oftenMadeAlongside,
-			Seasonality seasonality, List<String> tags, List<Recipe> pairsWith, Boolean notesInPlaceCollapse, String origin,
-			EaseLevel easeLevel, Meal meal, String category, String howToStore, String howToReheat, String howToFreeze,
-			List<String> howToUseRepurposeLeftoversIdeas, List<Recipe> dishesThatAlsoUseLeftoverIngredients, List<Recipe> mealAffinities,
-			LocalDateTime lastCooked, LocalDateTime created, List<LocalDateTime> allDatesCooked,
-			List<LocalDateTime> allDatesUpdated) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.version = version;
-		this.ingredients = ingredients;
-		this.method = method;
-		this.servings = servings;
-		this.prepTime = prepTime;
-		this.activeTime = activeTime;
-		this.totalTime = totalTime;
-		this.equipment = equipment;
-		this.pairings = pairings;
-		this.notes = notes;
-		this.rating = rating;
-		this.author = author;
-		this.foodOrDrink = foodOrDrink;
-		this.pictures = pictures;
-		this.oftenMadeAlongside = oftenMadeAlongside;
-		this.seasonality = seasonality;
-		this.tags = tags;
-		this.pairsWith = pairsWith;
-		this.notesInPlaceCollapse = notesInPlaceCollapse;
-		this.origin = origin;
-		this.easeLevel = easeLevel;
-		this.meal = meal;
-		this.category = category;
-		this.howToStore = howToStore;
-		this.howToReheat = howToReheat;
-		this.howToFreeze = howToFreeze;
-		this.howToUseRepurposeLeftoversIdeas = howToUseRepurposeLeftoversIdeas;
-		this.dishesThatAlsoUseLeftoverIngredients = dishesThatAlsoUseLeftoverIngredients;
-		this.mealAffinities = mealAffinities;
-		this.lastCooked = lastCooked;
-		this.created = created;
-		this.allDatesCooked = allDatesCooked;
-		this.allDatesUpdated = allDatesUpdated;
-	}
-	
-	
 
 	public int getId() {
 		return id;
@@ -227,10 +153,6 @@ public class Recipe {
 	public void setVersion(double version) {
 		this.version = version;
 	}
-	
-	
-
-	
 
 	public Set<Ingredient> getIngredients() {
 		return ingredients;
@@ -239,7 +161,7 @@ public class Recipe {
 	public void setIngredients(Set<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
-	/***/
+
 	public List<String> getMethod() {
 		return method;
 	}
@@ -488,24 +410,4 @@ public class Recipe {
 		this.allDatesUpdated = allDatesUpdated;
 	}
 
-	@Override
-	public String toString() {
-		return "Recipe [id=" + id + ", name=" + name + ", description=" + description + ", version=" + version
-				+ ", ingredients=" + ingredients + ", method=" + method + ", servings=" + servings + ", prepTime="
-				+ prepTime + ", activeTime=" + activeTime + ", totalTime=" + totalTime + ", equipment=" + equipment
-				+ ", pairings=" + pairings + ", notes=" + notes + ", rating=" + rating + ", author=" + author
-				+ ", foodOrDrink=" + foodOrDrink + ", pictures=" + pictures + ", oftenMadeAlongside="
-				+ oftenMadeAlongside + ", seasonality=" + seasonality + ", tags=" + tags + ", pairsWith=" + pairsWith
-				+ ", notesInPlaceCollapse=" + notesInPlaceCollapse + ", origin=" + origin + ", easeLevel=" + easeLevel
-				+ ", meal=" + meal + ", category=" + category + ", howToStore=" + howToStore + ", howToReheat="
-				+ howToReheat + ", howToFreeze=" + howToFreeze + ", howToUseRepurposeLeftoversIdeas="
-				+ howToUseRepurposeLeftoversIdeas + ", dishesThatAlsoUseLeftoverIngredients="
-				+ dishesThatAlsoUseLeftoverIngredients + ", mealAffinities=" + mealAffinities + ", lastCooked="
-				+ lastCooked + ", created=" + created + ", allDatesCooked=" + allDatesCooked + ", allDatesUpdated="
-				+ allDatesUpdated + "]";
-	}
-	
-	/***/
-	
-	
 }
