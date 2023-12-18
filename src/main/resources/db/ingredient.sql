@@ -1,0 +1,11 @@
+INSERT INTO `recipebook_schema`.`ingredient` (`name`) VALUES ('flour');
+INSERT INTO `recipebook_schema`.`ingredient` (`name`) VALUES ('baking powder');
+INSERT INTO `recipebook_schema`.`ingredient` (`name`) VALUES ('banana');
+INSERT INTO `recipebook_schema`.`ingredient` (`name`) VALUES ('crushed tomatoes');
+INSERT INTO `recipebook_schema`.`ingredient` (`name`) VALUES ('garlic');
+INSERT INTO `recipebook_schema`.`ingredient` (`name`) VALUES ('brown sugar');
+INSERT INTO `recipebook_schema`.`ingredient` (`name`) VALUES ('honey');
+INSERT INTO `recipebook_schema`.`ingredient` (`name`) VALUES ('sourdough starter');
+INSERT INTO `recipebook_schema`.`ingredient` (`name`) VALUES ('sweet Italian salsiccia');
+INSERT INTO `recipebook_schema`.`ingredient` (`name`) VALUES ('water');
+INSERT INTO `recipebook_schema`.`ingredient` (`name`) VALUES ('yellow onion');
