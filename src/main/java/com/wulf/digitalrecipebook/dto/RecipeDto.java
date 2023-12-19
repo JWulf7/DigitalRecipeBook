@@ -3,6 +3,7 @@ package com.wulf.digitalrecipebook.dto;
 import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -33,17 +34,57 @@ public class RecipeDto {
 		super();
 	}
 
-	public RecipeDto(int id2, String name2, String description2, double version2, Set<Ingredient> ingredients2,
-			List<String> method2, int servings2, LocalDateTime prepTime2, LocalDateTime activeTime2,
-			LocalDateTime totalTime2, List<Equipment> equipment2, Set<Recipe> pairings2, List<String> notes2,
-			int rating2, String author2, FoodorDrink foodOrDrink2, List<Blob> pictures2,
-			List<Recipe> oftenMadeAlongside2, Seasonality seasonality2, List<String> tags2, List<Recipe> pairsWith2,
-			Boolean notesInPlaceCollapse2, String origin2, EaseLevel easeLevel2, Meal meal2, String category2,
-			String howToStore2, String howToReheat2, String howToFreeze2, List<String> howToUseRepurposeLeftoversIdeas2,
-			List<Recipe> dishesThatAlsoUseLeftoverIngredients2, List<Recipe> mealAffinities2, LocalDateTime lastCooked2,
-			LocalDateTime created2, List<LocalDateTime> allDatesCooked2, List<LocalDateTime> allDatesUpdated2) {
-		// TODO Auto-generated constructor stub
+	
+
+	public RecipeDto(int id, String name, String description, double version, Set<Ingredient> ingredients,
+			List<String> method, int servings, LocalDateTime prepTime, LocalDateTime activeTime,
+			LocalDateTime totalTime, List<Equipment> equipment, Set<Recipe> pairings, List<String> notes, int rating,
+			String author, FoodorDrink foodOrDrink, List<Blob> pictures, List<Recipe> oftenMadeAlongside,
+			Seasonality seasonality, List<String> tags, List<Recipe> pairsWith, Boolean notesInPlaceCollapse,
+			String origin, EaseLevel easeLevel, Meal meal, String category, String howToStore, String howToReheat,
+			String howToFreeze, List<String> howToUseRepurposeLeftoversIdeas,
+			List<Recipe> dishesThatAlsoUseLeftoverIngredients, List<Recipe> mealAffinities, LocalDateTime lastCooked,
+			LocalDateTime created, List<LocalDateTime> allDatesCooked, List<LocalDateTime> allDatesUpdated) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.version = version;
+		this.ingredients = ingredients;
+		this.method = method;
+		this.servings = servings;
+		this.prepTime = prepTime;
+		this.activeTime = activeTime;
+		this.totalTime = totalTime;
+		this.equipment = equipment;
+		this.pairings = pairings;
+		this.notes = notes;
+		this.rating = rating;
+		this.author = author;
+		this.foodOrDrink = foodOrDrink;
+		this.pictures = pictures;
+		this.oftenMadeAlongside = oftenMadeAlongside;
+		this.seasonality = seasonality;
+		this.tags = tags;
+		this.pairsWith = pairsWith;
+		this.notesInPlaceCollapse = notesInPlaceCollapse;
+		this.origin = origin;
+		this.easeLevel = easeLevel;
+		this.meal = meal;
+		this.category = category;
+		this.howToStore = howToStore;
+		this.howToReheat = howToReheat;
+		this.howToFreeze = howToFreeze;
+		this.howToUseRepurposeLeftoversIdeas = howToUseRepurposeLeftoversIdeas;
+		this.dishesThatAlsoUseLeftoverIngredients = dishesThatAlsoUseLeftoverIngredients;
+		this.mealAffinities = mealAffinities;
+		this.lastCooked = lastCooked;
+		this.created = created;
+		this.allDatesCooked = allDatesCooked;
+		this.allDatesUpdated = allDatesUpdated;
 	}
+
+
 
 	private int id;
 	
@@ -408,6 +449,63 @@ public class RecipeDto {
 
 	public void setAllDatesUpdated(List<LocalDateTime> allDatesUpdated) {
 		this.allDatesUpdated = allDatesUpdated;
+	}
+
+	@Override
+	public String toString() {
+		return "RecipeDto [id=" + getId() + ", name=" + getName() + ", description=" + getDescription() + ", version=" + version
+				+ ", ingredients=" + ingredients + ", method=" + method + ", servings=" + servings + ", prepTime="
+				+ prepTime + ", activeTime=" + activeTime + ", totalTime=" + totalTime + ", equipment=" + equipment
+				+ ", pairings=" + pairings + ", notes=" + notes + ", rating=" + rating + ", author=" + author
+				+ ", foodOrDrink=" + foodOrDrink + ", pictures=" + pictures + ", oftenMadeAlongside="
+				+ oftenMadeAlongside + ", seasonality=" + seasonality + ", tags=" + tags + ", pairsWith=" + pairsWith
+				+ ", notesInPlaceCollapse=" + notesInPlaceCollapse + ", origin=" + origin + ", easeLevel=" + easeLevel
+				+ ", meal=" + meal + ", category=" + category + ", howToStore=" + howToStore + ", howToReheat="
+				+ howToReheat + ", howToFreeze=" + howToFreeze + ", howToUseRepurposeLeftoversIdeas="
+				+ howToUseRepurposeLeftoversIdeas + ", dishesThatAlsoUseLeftoverIngredients="
+				+ dishesThatAlsoUseLeftoverIngredients + ", mealAffinities=" + mealAffinities + ", lastCooked="
+				+ lastCooked + ", created=" + created + ", allDatesCooked=" + allDatesCooked + ", allDatesUpdated="
+				+ allDatesUpdated + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(activeTime, allDatesCooked, allDatesUpdated, author, category, created, description,
+				dishesThatAlsoUseLeftoverIngredients, easeLevel, equipment, foodOrDrink, howToFreeze, howToReheat,
+				howToStore, howToUseRepurposeLeftoversIdeas, id, ingredients, lastCooked, meal, mealAffinities, method,
+				name, notes, notesInPlaceCollapse, oftenMadeAlongside, origin, pairings, pairsWith, pictures, prepTime,
+				rating, seasonality, servings, tags, totalTime, version);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RecipeDto other = (RecipeDto) obj;
+		return Objects.equals(activeTime, other.activeTime) && Objects.equals(allDatesCooked, other.allDatesCooked)
+				&& Objects.equals(allDatesUpdated, other.allDatesUpdated) && Objects.equals(author, other.author)
+				&& Objects.equals(category, other.category) && Objects.equals(created, other.created)
+				&& Objects.equals(description, other.description)
+				&& Objects.equals(dishesThatAlsoUseLeftoverIngredients, other.dishesThatAlsoUseLeftoverIngredients)
+				&& easeLevel == other.easeLevel && Objects.equals(equipment, other.equipment)
+				&& foodOrDrink == other.foodOrDrink && Objects.equals(howToFreeze, other.howToFreeze)
+				&& Objects.equals(howToReheat, other.howToReheat) && Objects.equals(howToStore, other.howToStore)
+				&& Objects.equals(howToUseRepurposeLeftoversIdeas, other.howToUseRepurposeLeftoversIdeas)
+				&& id == other.id && Objects.equals(ingredients, other.ingredients)
+				&& Objects.equals(lastCooked, other.lastCooked) && meal == other.meal
+				&& Objects.equals(mealAffinities, other.mealAffinities) && Objects.equals(method, other.method)
+				&& Objects.equals(name, other.name) && Objects.equals(notes, other.notes)
+				&& Objects.equals(notesInPlaceCollapse, other.notesInPlaceCollapse)
+				&& Objects.equals(oftenMadeAlongside, other.oftenMadeAlongside) && Objects.equals(origin, other.origin)
+				&& Objects.equals(pairings, other.pairings) && Objects.equals(pairsWith, other.pairsWith)
+				&& Objects.equals(pictures, other.pictures) && Objects.equals(prepTime, other.prepTime)
+				&& rating == other.rating && seasonality == other.seasonality && servings == other.servings
+				&& Objects.equals(tags, other.tags) && Objects.equals(totalTime, other.totalTime)
+				&& Double.doubleToLongBits(version) == Double.doubleToLongBits(other.version);
 	}
 
 }

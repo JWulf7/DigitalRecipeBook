@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wulf.digitalrecipebook.model.recipe.*;
+import com.wulf.digitalrecipebook.dto.RecipeDto;
+import com.wulf.digitalrecipebook.exception.ResourceNotFoundException;
+import com.wulf.digitalrecipebook.mapper.RecipeMapper;
+import com.wulf.digitalrecipebook.model.recipe.Ingredient;
+import com.wulf.digitalrecipebook.model.recipe.Recipe;
 import com.wulf.digitalrecipebook.repository.RecipeRepository;
 
 @Service
@@ -86,41 +89,50 @@ public class RecipeService {
 	
 	
 	
-	public Recipe addRecipe(String name) {
-		return recipeRepository.save(createNewRecipe(name));
-		//recipes.add(createNewRecipe(name));
-		//return getRecipe(name);
+	public RecipeDto addRecipe(String name) {
+		Recipe recipe = recipeRepository.save(createNewRecipe(name));
+		RecipeDto recipeDto = RecipeMapper.mapToRecipeDto(recipe);
+		return recipeDto;
 	}
 	
-	public Recipe getRecipe(String name) {
-//		for(Recipe recipe : recipes) {
-//			if (recipe.getName().equalsIgnoreCase(name)) {
-//				return recipe;
-//			}
-//		}
-		return recipeRepository.findByName(name);
-		//return null;
+	
+	public RecipeDto getRecipeByName(String name) {
+		// get Recipe obj from Repo by name
+		Recipe recipe = recipeRepository.findByName(name);
+		// check if obj exists, (null check)
+		if (recipe != null) {
+			// if obj exists, map to Dto obj and return to controller
+			return RecipeMapper.mapToRecipeDto(recipe);
+		}
+		// else, if obj is null (doesn't exist), throw exception
+		throw new ResourceNotFoundException("Recipe not found with name: '" + name + "'");
 	}
 
-	public List<Recipe> getRecipes() {
-		return recipeRepository.findAll();
-		//return recipes;
+	public List<RecipeDto> getRecipes() {
+		// initialize Lists
+		List<RecipeDto> allRecipeDto = new ArrayList<>();
+		List<Recipe> allRecipes = recipeRepository.findAll();
+		// map all Recipes from DB to RecipeDto's, add to Dto List
+		for(Recipe recipe : allRecipes) {
+			RecipeDto dto = RecipeMapper.mapToRecipeDto(recipe);
+			allRecipeDto.add(dto);
+		}
+		// return Dto List to controller
+		return allRecipeDto;
+
 	}
 	
-	public Recipe updateRecipe(Recipe recipe) {
-		/**Recipe oldRecipe = getRecipe(recipe.getName());
-		//oldRecipe.
-		int index = recipes.indexOf(oldRecipe);
-		double version = oldRecipe.getVersion();
-		recipe.setVersion((oldRecipe.getVersion()+1));
-		recipes.set(index, recipe);
-		//recipes.
-		return getRecipe(recipe.getName());
-		*/
+	public RecipeDto updateRecipe(RecipeDto recipeDto) {
+		// map Dto to Recipe
+		Recipe recipe = RecipeMapper.mapToRecipe(recipeDto);
+		// increment version
 		Recipe oldrecipe = recipeRepository.findByName(recipe.getName());
 		recipe.setVersion((oldrecipe.getVersion()+1));
-		return recipeRepository.save(recipe);
-		
+		// update recipe in DB
+		Recipe updatedRecipe = recipeRepository.save(recipe);
+		// convert to and return Dto to controller
+		RecipeDto updatedRecipeDto = RecipeMapper.mapToRecipeDto(updatedRecipe);
+		return updatedRecipeDto;
 	}
 	
 }

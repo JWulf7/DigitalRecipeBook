@@ -11,8 +11,5 @@ import com.wulf.digitalrecipebook.model.recipe.Recipe;
 public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 
 	
-//	public Recipe findByName(String name) {
-//		
-//	}
 	Recipe findByName(String name);
 }

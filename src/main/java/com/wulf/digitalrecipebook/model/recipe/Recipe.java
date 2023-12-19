@@ -3,6 +3,7 @@ package com.wulf.digitalrecipebook.model.recipe;
 import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -503,6 +504,46 @@ public class Recipe {
 				+ dishesThatAlsoUseLeftoverIngredients + ", mealAffinities=" + mealAffinities + ", lastCooked="
 				+ lastCooked + ", created=" + created + ", allDatesCooked=" + allDatesCooked + ", allDatesUpdated="
 				+ allDatesUpdated + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(activeTime, allDatesCooked, allDatesUpdated, author, category, created, description,
+				dishesThatAlsoUseLeftoverIngredients, easeLevel, equipment, foodOrDrink, howToFreeze, howToReheat,
+				howToStore, howToUseRepurposeLeftoversIdeas, id, ingredients, lastCooked, meal, mealAffinities, method,
+				name, notes, notesInPlaceCollapse, oftenMadeAlongside, origin, pairings, pairsWith, pictures, prepTime,
+				rating, seasonality, servings, tags, totalTime, version);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Recipe other = (Recipe) obj;
+		return Objects.equals(activeTime, other.activeTime) && Objects.equals(allDatesCooked, other.allDatesCooked)
+				&& Objects.equals(allDatesUpdated, other.allDatesUpdated) && Objects.equals(author, other.author)
+				&& Objects.equals(category, other.category) && Objects.equals(created, other.created)
+				&& Objects.equals(description, other.description)
+				&& Objects.equals(dishesThatAlsoUseLeftoverIngredients, other.dishesThatAlsoUseLeftoverIngredients)
+				&& easeLevel == other.easeLevel && Objects.equals(equipment, other.equipment)
+				&& foodOrDrink == other.foodOrDrink && Objects.equals(howToFreeze, other.howToFreeze)
+				&& Objects.equals(howToReheat, other.howToReheat) && Objects.equals(howToStore, other.howToStore)
+				&& Objects.equals(howToUseRepurposeLeftoversIdeas, other.howToUseRepurposeLeftoversIdeas)
+				&& id == other.id && Objects.equals(ingredients, other.ingredients)
+				&& Objects.equals(lastCooked, other.lastCooked) && meal == other.meal
+				&& Objects.equals(mealAffinities, other.mealAffinities) && Objects.equals(method, other.method)
+				&& Objects.equals(name, other.name) && Objects.equals(notes, other.notes)
+				&& Objects.equals(notesInPlaceCollapse, other.notesInPlaceCollapse)
+				&& Objects.equals(oftenMadeAlongside, other.oftenMadeAlongside) && Objects.equals(origin, other.origin)
+				&& Objects.equals(pairings, other.pairings) && Objects.equals(pairsWith, other.pairsWith)
+				&& Objects.equals(pictures, other.pictures) && Objects.equals(prepTime, other.prepTime)
+				&& rating == other.rating && seasonality == other.seasonality && servings == other.servings
+				&& Objects.equals(tags, other.tags) && Objects.equals(totalTime, other.totalTime)
+				&& Double.doubleToLongBits(version) == Double.doubleToLongBits(other.version);
 	}
 	
 	/***/
