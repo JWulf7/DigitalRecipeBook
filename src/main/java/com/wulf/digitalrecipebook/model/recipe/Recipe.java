@@ -54,7 +54,7 @@ public class Recipe {
 	private List<Equipment> equipment;
 	
 	@ManyToMany
-	private Set<Recipe> pairings;
+	private Set<RecipeName> pairings;
 
 	/**
 	//@OneToMany
@@ -75,7 +75,7 @@ public class Recipe {
 	private List<Blob> pictures;
 	
 	@ManyToMany
-	private List<Recipe> oftenMadeAlongside; // in the same meal/ dish/ within 7 days of that recipe/ etc
+	private List<RecipeName> oftenMadeAlongside; // in the same meal/ dish/ within 7 days of that recipe/ etc
 	
 	//@Enumerated(EnumType.STRING)
 	private Seasonality seasonality;
@@ -83,7 +83,7 @@ public class Recipe {
 	private List<String> tags;
 
 	@ManyToMany
-	private List<Recipe> pairsWith;
+	private List<RecipeName> pairsWith;
 	
 	private Boolean notesInPlaceCollapse;
 	
@@ -108,10 +108,10 @@ public class Recipe {
 	private List<String> howToUseRepurposeLeftoversIdeas;
 	
 	@ManyToMany
-	private List<Recipe> dishesThatAlsoUseLeftoverIngredients;
+	private List<RecipeName> dishesThatAlsoUseLeftoverIngredients;
 	
 	@ManyToMany
-	private List<Recipe> mealAffinities; // this goes really well w/ _ meals in the week 
+	private List<RecipeName> mealAffinities; // this goes really well w/ _ meals in the week 
 	
 	// date/time
 	
@@ -149,11 +149,11 @@ public class Recipe {
 
 	public Recipe(int id, String name, String description, double version, Set<Ingredient> ingredients,
 			List<String> method, int servings, LocalDateTime prepTime, LocalDateTime activeTime,
-			LocalDateTime totalTime, List<Equipment> equipment, Set<Recipe> pairings, List<String> notes, int rating,
-			String author, FoodorDrink foodOrDrink, List<Blob> pictures, List<Recipe> oftenMadeAlongside,
-			Seasonality seasonality, List<String> tags, List<Recipe> pairsWith, Boolean notesInPlaceCollapse, String origin,
+			LocalDateTime totalTime, List<Equipment> equipment, Set<RecipeName> pairings, List<String> notes, int rating,
+			String author, FoodorDrink foodOrDrink, List<Blob> pictures, List<RecipeName> oftenMadeAlongside,
+			Seasonality seasonality, List<String> tags, List<RecipeName> pairsWith, Boolean notesInPlaceCollapse, String origin,
 			EaseLevel easeLevel, Meal meal, String category, String howToStore, String howToReheat, String howToFreeze,
-			List<String> howToUseRepurposeLeftoversIdeas, List<Recipe> dishesThatAlsoUseLeftoverIngredients, List<Recipe> mealAffinities,
+			List<String> howToUseRepurposeLeftoversIdeas, List<RecipeName> dishesThatAlsoUseLeftoverIngredients, List<RecipeName> mealAffinities,
 			LocalDateTime lastCooked, LocalDateTime created, List<LocalDateTime> allDatesCooked,
 			List<LocalDateTime> allDatesUpdated) {
 		super();
@@ -289,11 +289,11 @@ public class Recipe {
 		this.equipment = equipment;
 	}
 
-	public Set<Recipe> getPairings() {
+	public Set<RecipeName> getPairings() {
 		return pairings;
 	}
 
-	public void setPairings(Set<Recipe> pairings) {
+	public void setPairings(Set<RecipeName> pairings) {
 		this.pairings = pairings;
 	}
 
@@ -337,11 +337,11 @@ public class Recipe {
 		this.pictures = pictures;
 	}
 
-	public List<Recipe> getOftenMadeAlongside() {
+	public List<RecipeName> getOftenMadeAlongside() {
 		return oftenMadeAlongside;
 	}
 
-	public void setOftenMadeAlongside(List<Recipe> oftenMadeAlongside) {
+	public void setOftenMadeAlongside(List<RecipeName> oftenMadeAlongside) {
 		this.oftenMadeAlongside = oftenMadeAlongside;
 	}
 
@@ -361,11 +361,11 @@ public class Recipe {
 		this.tags = tags;
 	}
 
-	public List<Recipe> getPairsWith() {
+	public List<RecipeName> getPairsWith() {
 		return pairsWith;
 	}
 
-	public void setPairsWith(List<Recipe> pairsWith) {
+	public void setPairsWith(List<RecipeName> pairsWith) {
 		this.pairsWith = pairsWith;
 	}
 
@@ -441,19 +441,19 @@ public class Recipe {
 		this.howToUseRepurposeLeftoversIdeas = howToUseRepurposeLeftoversIdeas;
 	}
 
-	public List<Recipe> getDishesThatAlsoUseLeftoverIngredients() {
+	public List<RecipeName> getDishesThatAlsoUseLeftoverIngredients() {
 		return dishesThatAlsoUseLeftoverIngredients;
 	}
 
-	public void setDishesThatAlsoUseLeftoverIngredients(List<Recipe> dishesThatAlsoUseLeftoverIngredients) {
+	public void setDishesThatAlsoUseLeftoverIngredients(List<RecipeName> dishesThatAlsoUseLeftoverIngredients) {
 		this.dishesThatAlsoUseLeftoverIngredients = dishesThatAlsoUseLeftoverIngredients;
 	}
 
-	public List<Recipe> getMealAffinities() {
+	public List<RecipeName> getMealAffinities() {
 		return mealAffinities;
 	}
 
-	public void setMealAffinities(List<Recipe> mealAffinities) {
+	public void setMealAffinities(List<RecipeName> mealAffinities) {
 		this.mealAffinities = mealAffinities;
 	}
 

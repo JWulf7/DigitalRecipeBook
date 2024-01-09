@@ -5,5 +5,5 @@ import jakarta.persistence.Entity;
 //@Entity
 public enum Seasonality {
 
-	SPRING, SUMMER, AUTUMN, WINTER
+	SPRING, SUMMER, AUTUMN, WINTER, ANY
 }
