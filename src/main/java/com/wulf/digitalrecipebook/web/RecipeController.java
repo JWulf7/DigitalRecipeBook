@@ -60,11 +60,20 @@ public class RecipeController {
 		return new ResponseEntity<>(recipeDto, HttpStatus.CREATED);
 	}
 	
-	@PutMapping(value="/update")
-	public ResponseEntity<RecipeDto> updateRecipe(@RequestBody RecipeDto recipeDto) {
-		RecipeDto updatedDto = recipeService.updateRecipe(recipeDto);
-		return new ResponseEntity<>(updatedDto, HttpStatus.OK);
-	}
 	
+	@PutMapping(value="/update") 
+	public ResponseEntity<RecipeDto> updateRecipe(@RequestBody RecipeDto recipeDto) { 
+		System.out.println("MYLOGGER : started updateRecipe() method at '/update' endpoint in RecipeController"); 
+		RecipeDto updatedDto = recipeService.updateRecipe(recipeDto);
+		return new ResponseEntity<>(updatedDto, HttpStatus.OK); 
+	}
+	 
+	/*
+	 * @PutMapping(value="/update") public ResponseEntity<Recipe>
+	 * updateRecipe(@RequestBody Recipe recipeDto) { System.out.
+	 * println("MYLOGGER : started updateRecipe() method at '/update' endpoint in RecipeController"
+	 * ); Recipe updatedDto = recipeService.updateRecipe(recipeDto); return new
+	 * ResponseEntity<>(updatedDto, HttpStatus.OK); }
+	 */
 
 }

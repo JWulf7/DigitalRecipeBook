@@ -1,5 +1,6 @@
 package com.wulf.digitalrecipebook.model.recipe;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -10,12 +11,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 
 @Entity
-public class Ingredient {
+public class Ingredient implements Serializable{
 
 	@Id
 	public String name;
 	
-	@JsonBackReference
+	@JsonBackReference(value = "recipe-ingredients")
 	@ManyToMany
 	(mappedBy = "ingredients")
 	public Set<Recipe> usedIn;

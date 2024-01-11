@@ -1,15 +1,20 @@
 package com.wulf.digitalrecipebook.model.recipe;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,7 +26,7 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 //@Component
-public class Recipe {
+public class Recipe implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -35,7 +40,8 @@ public class Recipe {
 	
 	private double version;
 	
-	@JsonManagedReference
+	//@JsonManagedReference(value = "recipe-ingredients")
+	@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="name")
 	@ManyToMany
 	private Set<Ingredient> ingredients; 
 	
@@ -69,7 +75,7 @@ public class Recipe {
 	
 	private String author;
 	
-	//@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
 	private FoodorDrink foodOrDrink; 
 	
 	private List<Blob> pictures;
@@ -77,7 +83,7 @@ public class Recipe {
 	@ManyToMany
 	private List<RecipeName> oftenMadeAlongside; // in the same meal/ dish/ within 7 days of that recipe/ etc
 	
-	//@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
 	private Seasonality seasonality;
 	
 	private List<String> tags;
@@ -89,10 +95,10 @@ public class Recipe {
 	
 	private String origin;
 	
-	//@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
 	private EaseLevel easeLevel;
 	
-	//@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
 	private Meal meal;
 	
 	private String category;

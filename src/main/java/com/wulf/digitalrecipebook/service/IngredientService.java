@@ -19,6 +19,11 @@ public class IngredientService {
 	 */
 	
 	public Ingredient findIngredientByName(String name) {
-		return ingredientRepository.findById(name).get();
+		return ingredientRepository.findById(name).orElse(null);
+		//return ingredientRepository.findById(name).get();
+	}
+	
+	public Ingredient saveIngredient(String ingredientName) {
+		return ingredientRepository.save(new Ingredient(ingredientName));
 	}
 }

@@ -1,35 +1,23 @@
 package com.wulf.digitalrecipebook.dto;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.wulf.digitalrecipebook.model.recipe.EaseLevel;
 import com.wulf.digitalrecipebook.model.recipe.Equipment;
 import com.wulf.digitalrecipebook.model.recipe.FoodorDrink;
 import com.wulf.digitalrecipebook.model.recipe.Ingredient;
 import com.wulf.digitalrecipebook.model.recipe.Meal;
-import com.wulf.digitalrecipebook.model.recipe.Recipe;
 import com.wulf.digitalrecipebook.model.recipe.RecipeName;
 import com.wulf.digitalrecipebook.model.recipe.Seasonality;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 
-
-public class RecipeDto {
+public class RecipeDto implements Serializable{
 
 	public RecipeDto() {
 		super();
@@ -164,6 +152,8 @@ public class RecipeDto {
 	
 	private List<LocalDateTime> allDatesUpdated;
 
+	
+	// getters and setters
 	public int getId() {
 		return id;
 	}

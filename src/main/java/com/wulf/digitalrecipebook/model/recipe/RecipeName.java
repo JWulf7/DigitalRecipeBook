@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 public class RecipeName {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	
 	// changed this since ran the program last..comment out below line if issues occur
