@@ -2,15 +2,19 @@ package com.wulf.digitalrecipebook.dto;
 
 import java.io.Serializable;
 import java.sql.Blob;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeMap;
 
 import com.wulf.digitalrecipebook.model.recipe.EaseLevel;
 import com.wulf.digitalrecipebook.model.recipe.Equipment;
 import com.wulf.digitalrecipebook.model.recipe.FoodorDrink;
 import com.wulf.digitalrecipebook.model.recipe.Ingredient;
+//import com.wulf.digitalrecipebook.model.recipe.IngredientsList;
 import com.wulf.digitalrecipebook.model.recipe.Meal;
 import com.wulf.digitalrecipebook.model.recipe.RecipeName;
 import com.wulf.digitalrecipebook.model.recipe.Seasonality;
@@ -25,12 +29,12 @@ public class RecipeDto implements Serializable{
 
 	
 
-	public RecipeDto(int id, String name, String description, double version, Set<Ingredient> ingredients,
-			List<String> method, int servings, LocalDateTime prepTime, LocalDateTime activeTime,
-			LocalDateTime totalTime, List<Equipment> equipment, Set<RecipeName> pairings, List<String> notes, int rating,
+	public RecipeDto(int id, String name, String description, double version, Map<Ingredient, String> ingredients,
+			List<String> method, int servings, Duration prepTime, Duration activeTime,
+			Duration totalTime, List<Equipment> equipment, Set<RecipeName> pairings, List<String> notes, int rating,
 			String author, FoodorDrink foodOrDrink, List<Blob> pictures, List<RecipeName> oftenMadeAlongside,
 			Seasonality seasonality, List<String> tags, List<RecipeName> pairsWith, Boolean notesInPlaceCollapse,
-			String origin, EaseLevel easeLevel, Meal meal, String category, String howToStore, String howToReheat,
+			String origin, EaseLevel easeLevel, List<Meal> meal, String category, String howToStore, String howToReheat,
 			String howToFreeze, List<String> howToUseRepurposeLeftoversIdeas,
 			List<RecipeName> dishesThatAlsoUseLeftoverIngredients, List<RecipeName> mealAffinities, LocalDateTime lastCooked,
 			LocalDateTime created, List<LocalDateTime> allDatesCooked, List<LocalDateTime> allDatesUpdated) {
@@ -84,17 +88,17 @@ public class RecipeDto implements Serializable{
 	
 	private double version;
 	
-	private Set<Ingredient> ingredients; 
+	private Map<Ingredient, String> ingredients = new TreeMap<Ingredient, String>();
 	
 	private List<String> method;
 	
 	private int servings;
 	
-	private LocalDateTime prepTime;
+	private Duration prepTime;
 	
-	private LocalDateTime activeTime;
+	private Duration activeTime;
 	
-	private LocalDateTime totalTime;
+	private Duration totalTime;
 	
 	private List<Equipment> equipment;
 	
@@ -124,7 +128,7 @@ public class RecipeDto implements Serializable{
 	
 	private EaseLevel easeLevel;
 	
-	private Meal meal;
+	private List<Meal> meal;
 	
 	private String category;
 	
@@ -186,11 +190,11 @@ public class RecipeDto implements Serializable{
 		this.version = version;
 	}
 
-	public Set<Ingredient> getIngredients() {
+	public Map<Ingredient, String> getIngredients() {
 		return ingredients;
 	}
 
-	public void setIngredients(Set<Ingredient> ingredients) {
+	public void setIngredients(Map<Ingredient, String> ingredients) {
 		this.ingredients = ingredients;
 	}
 
@@ -210,27 +214,27 @@ public class RecipeDto implements Serializable{
 		this.servings = servings;
 	}
 
-	public LocalDateTime getPrepTime() {
+	public Duration getPrepTime() {
 		return prepTime;
 	}
 
-	public void setPrepTime(LocalDateTime prepTime) {
+	public void setPrepTime(Duration prepTime) {
 		this.prepTime = prepTime;
 	}
 
-	public LocalDateTime getActiveTime() {
+	public Duration getActiveTime() {
 		return activeTime;
 	}
 
-	public void setActiveTime(LocalDateTime activeTime) {
+	public void setActiveTime(Duration activeTime) {
 		this.activeTime = activeTime;
 	}
 
-	public LocalDateTime getTotalTime() {
+	public Duration getTotalTime() {
 		return totalTime;
 	}
 
-	public void setTotalTime(LocalDateTime totalTime) {
+	public void setTotalTime(Duration totalTime) {
 		this.totalTime = totalTime;
 	}
 
@@ -346,11 +350,11 @@ public class RecipeDto implements Serializable{
 		this.easeLevel = easeLevel;
 	}
 
-	public Meal getMeal() {
+	public List<Meal> getMeal() {
 		return meal;
 	}
 
-	public void setMeal(Meal meal) {
+	public void setMeal(List<Meal> meal) {
 		this.meal = meal;
 	}
 

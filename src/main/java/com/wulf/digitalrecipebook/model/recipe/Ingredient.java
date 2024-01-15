@@ -1,6 +1,7 @@
 package com.wulf.digitalrecipebook.model.recipe;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -14,12 +15,12 @@ import jakarta.persistence.ManyToMany;
 public class Ingredient implements Serializable{
 
 	@Id
-	public String name;
+	public String ingredientName;
 	
-	@JsonBackReference(value = "recipe-ingredients")
-	@ManyToMany
-	(mappedBy = "ingredients")
-	public Set<Recipe> usedIn;
+//	@JsonBackReference(value = "recipe-ingredients")
+//	@ManyToMany (mappedBy = "ingredients") 
+//	public Set<Recipe> usedIn;
+	 
 	
 	public Ingredient() {
 		super();
@@ -31,10 +32,35 @@ public class Ingredient implements Serializable{
 	}
 	
 	public void setName(String name) {
-		this.name = name;
+		this.ingredientName = name;
 	}
 	
 	public String getName() {
-		return this.name;
+		return this.ingredientName;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(ingredientName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ingredient other = (Ingredient) obj;
+		return Objects.equals(ingredientName, other.ingredientName);
+	}
+
+	@Override
+	public String toString() {
+		return "Ingredient [ingredientName=" + ingredientName + "]";
+	}
+	
+	
+	
 }

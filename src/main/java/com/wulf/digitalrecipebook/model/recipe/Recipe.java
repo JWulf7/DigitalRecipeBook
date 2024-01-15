@@ -2,24 +2,33 @@ package com.wulf.digitalrecipebook.model.recipe;
 
 import java.io.Serializable;
 import java.sql.Blob;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.temporal.Temporal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeMap;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.MapKey;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
 
 //import javax.persistence.Id;
 
@@ -41,19 +50,34 @@ public class Recipe implements Serializable{
 	private double version;
 	
 	//@JsonManagedReference(value = "recipe-ingredients")
-	@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="name")
-	@ManyToMany
-	private Set<Ingredient> ingredients; 
+	//@ElementCollection
+	//@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="name")
+	//@ManyToMany
+	//@OneToMany
+	//private Map<Ingredient, String> ingredients = new TreeMap<Ingredient, String>();
+	
+	
+//	@OneToMany
+//	@JoinTable(name = "recipe_ingredient_mapping",
+//			joinColumns = {@JoinColumn(name = "recipe_id", referencedColumnName = "id")},
+//			inverseJoinColumns = {@JoinColumn(name = "ingredient_id", referencedColumnName = "name")})
+//	@MapKey(name = "name")
+	
+	@ElementCollection
+	private Map<Ingredient, String> ingredients = new TreeMap<Ingredient, String>();
+	
+	//private IngredientsList ingredientsList;
 	
 	private List<String> method;
 	
 	private int servings;
 	
-	private LocalDateTime prepTime;
+	//private LocalDateTime prepTime;
+	private Duration prepTime;
 	
-	private LocalDateTime activeTime;
+	private Duration activeTime;
 	
-	private LocalDateTime totalTime;
+	private Duration totalTime;
 	
 	//@Enumerated(EnumType.STRING)
 	@OneToMany
@@ -99,7 +123,7 @@ public class Recipe implements Serializable{
 	private EaseLevel easeLevel;
 	
 	@Enumerated(EnumType.STRING)
-	private Meal meal;
+	private List<Meal> meal;
 	
 	private String category;
 	
@@ -114,10 +138,10 @@ public class Recipe implements Serializable{
 	private List<String> howToUseRepurposeLeftoversIdeas;
 	
 	@ManyToMany
-	private List<RecipeName> dishesThatAlsoUseLeftoverIngredients;
+	private List<RecipeName> dishesThatAlsoUseLeftoverIngredients = new ArrayList();
 	
 	@ManyToMany
-	private List<RecipeName> mealAffinities; // this goes really well w/ _ meals in the week 
+	private List<RecipeName> mealAffinities = new ArrayList(); // this goes really well w/ _ meals in the week 
 	
 	// date/time
 	
@@ -125,9 +149,10 @@ public class Recipe implements Serializable{
 	
 	private LocalDateTime created;
 	
-	private List<LocalDateTime> allDatesCooked;
+	private List<LocalDateTime> allDatesCooked = new ArrayList();
 	
-	private List<LocalDateTime> allDatesUpdated;
+	//private List<LocalDateTime> allDatesUpdated;
+	private List<LocalDateTime> allDatesUpdated = new ArrayList();
 
 
 
@@ -153,12 +178,12 @@ public class Recipe implements Serializable{
 
 	
 
-	public Recipe(int id, String name, String description, double version, Set<Ingredient> ingredients,
-			List<String> method, int servings, LocalDateTime prepTime, LocalDateTime activeTime,
-			LocalDateTime totalTime, List<Equipment> equipment, Set<RecipeName> pairings, List<String> notes, int rating,
+	public Recipe(int id, String name, String description, double version, Map<Ingredient, String> ingredients,
+			List<String> method, int servings, Duration prepTime, Duration activeTime,
+			Duration totalTime, List<Equipment> equipment, Set<RecipeName> pairings, List<String> notes, int rating,
 			String author, FoodorDrink foodOrDrink, List<Blob> pictures, List<RecipeName> oftenMadeAlongside,
 			Seasonality seasonality, List<String> tags, List<RecipeName> pairsWith, Boolean notesInPlaceCollapse, String origin,
-			EaseLevel easeLevel, Meal meal, String category, String howToStore, String howToReheat, String howToFreeze,
+			EaseLevel easeLevel, List<Meal> meal, String category, String howToStore, String howToReheat, String howToFreeze,
 			List<String> howToUseRepurposeLeftoversIdeas, List<RecipeName> dishesThatAlsoUseLeftoverIngredients, List<RecipeName> mealAffinities,
 			LocalDateTime lastCooked, LocalDateTime created, List<LocalDateTime> allDatesCooked,
 			List<LocalDateTime> allDatesUpdated) {
@@ -239,11 +264,11 @@ public class Recipe implements Serializable{
 
 	
 
-	public Set<Ingredient> getIngredients() {
+	public Map<Ingredient, String> getIngredients() {
 		return ingredients;
 	}
 
-	public void setIngredients(Set<Ingredient> ingredients) {
+	public void setIngredients(Map<Ingredient, String> ingredients) {
 		this.ingredients = ingredients;
 	}
 	/***/
@@ -263,27 +288,27 @@ public class Recipe implements Serializable{
 		this.servings = servings;
 	}
 
-	public LocalDateTime getPrepTime() {
+	public Duration getPrepTime() {
 		return prepTime;
 	}
 
-	public void setPrepTime(LocalDateTime prepTime) {
+	public void setPrepTime(Duration prepTime) {
 		this.prepTime = prepTime;
 	}
 
-	public LocalDateTime getActiveTime() {
+	public Duration getActiveTime() {
 		return activeTime;
 	}
 
-	public void setActiveTime(LocalDateTime activeTime) {
+	public void setActiveTime(Duration activeTime) {
 		this.activeTime = activeTime;
 	}
 
-	public LocalDateTime getTotalTime() {
+	public Duration getTotalTime() {
 		return totalTime;
 	}
 
-	public void setTotalTime(LocalDateTime totalTime) {
+	public void setTotalTime(Duration totalTime) {
 		this.totalTime = totalTime;
 	}
 
@@ -399,11 +424,11 @@ public class Recipe implements Serializable{
 		this.easeLevel = easeLevel;
 	}
 
-	public Meal getMeal() {
+	public List<Meal> getMeal() {
 		return meal;
 	}
 
-	public void setMeal(Meal meal) {
+	public void setMeal(List<Meal> meal) {
 		this.meal = meal;
 	}
 

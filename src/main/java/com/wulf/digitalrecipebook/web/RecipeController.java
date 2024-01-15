@@ -25,10 +25,10 @@ public class RecipeController {
 	RecipeService recipeService;
 	
 	// deprecated once DB is established
-	@GetMapping(value="/start")
-	public List<Recipe> fillRecipes() {
-		return recipeService.recipeBuilder();
-	}
+	/*
+	 * @GetMapping(value="/start") public List<Recipe> fillRecipes() { return
+	 * recipeService.recipeBuilder(); }
+	 */
 	
 	
 	@GetMapping(value="/getRecipes")

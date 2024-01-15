@@ -2,6 +2,8 @@ package com.wulf.digitalrecipebook.model.recipe;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,6 +14,7 @@ import jakarta.persistence.Id;
 public class RecipeName {
 
 	@Id
+	@JsonIgnore
 	//@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	
