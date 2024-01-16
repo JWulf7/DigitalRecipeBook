@@ -128,7 +128,7 @@ public class RecipeService {
   		// map Dto to Recipe 
 		Recipe recipe = RecipeMapper.mapToRecipe(recipeDto);
 		System.out.println("MYLOGGER : mapped incoming RecipeDto to Recipe classes");
-		// increment version 
+		// increment version
 	  	Recipe oldrecipe = recipeRepository.findByName(recipe.getName());
 	  	recipe.setVersion((oldrecipe.getVersion()+1)); 
 	  	// check ingredients in DB before saving recipe 
@@ -136,6 +136,7 @@ public class RecipeService {
 	  	equipmentCheck(recipe);
 	  	recipe = recipeNameCheck(recipe);
 	  	// add value to recipe.allDatesUpdated
+	  	recipe.setAllDatesUpdated(oldrecipe.getAllDatesUpdated());
 	  	System.out.println("MYLOGGER : in RecipeService Class.updateRecipe() : started right before instantiating arrayList");
 	  	System.out.println("MYLOGGER : in RecipeService Class.updateRecipe() : current, before update - recipe.getAllDatesUpdated() -> " + recipe.getAllDatesUpdated().toString());
 	  	System.out.println("MYLOGGER : in RecipeService Class.updateRecipe() : current, before update - recipe -> " + recipe);
@@ -143,7 +144,10 @@ public class RecipeService {
 	  	previousUpdates = (ArrayList<LocalDateTime>) recipe.getAllDatesUpdated();
 	  	System.out.println("MYLOGGER : in RecipeService Class.updateRecipe() : ArrayList previousUpdates -> " + previousUpdates);
 	  	if(previousUpdates.add(LocalDateTime.now())) {
+	  		System.out.println("MYLOGGER : in RecipeService Class.updateRecipe() : updating allDatesUpdated, in if statement (it was true)");
 	  		recipe.setAllDatesUpdated(previousUpdates);
+	  		System.out.println("MYLOGGER : in RecipeService Class.updateRecipe() : updating allDatesUpdated, in if statement, after recipe should now have full set of updated list");
+	  		System.out.println("MYLOGGER : in RecipeService Class.updateRecipe() : updating allDatesUpdated, in if statement, after recipe should now have full set of updated list; recipe.getAllDatesUpdated() -> " + recipe.getAllDatesUpdated());
 	  	}
 	  	
 	  	// update recipe in DB 
