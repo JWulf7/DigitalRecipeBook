@@ -34,7 +34,7 @@ public class RecipeDto implements Serializable{
 			Duration totalTime, List<Equipment> equipment, Set<RecipeName> pairings, List<String> notes, int rating,
 			String author, FoodorDrink foodOrDrink, List<Blob> pictures, List<RecipeName> oftenMadeAlongside,
 			Seasonality seasonality, List<String> tags, List<RecipeName> pairsWith, Boolean notesInPlaceCollapse,
-			String origin, EaseLevel easeLevel, List<Meal> meal, String category, String howToStore, String howToReheat,
+			String origin, EaseLevel easeLevel, List<Meal> meal, List<String> category, String howToStore, String howToReheat,
 			String howToFreeze, List<String> howToUseRepurposeLeftoversIdeas,
 			List<RecipeName> dishesThatAlsoUseLeftoverIngredients, List<RecipeName> mealAffinities, LocalDateTime lastCooked,
 			LocalDateTime created, List<LocalDateTime> allDatesCooked, List<LocalDateTime> allDatesUpdated) {
@@ -130,7 +130,7 @@ public class RecipeDto implements Serializable{
 	
 	private List<Meal> meal;
 	
-	private String category;
+	private List<String> category;
 	
 	// Leftovers
 	
@@ -358,11 +358,11 @@ public class RecipeDto implements Serializable{
 		this.meal = meal;
 	}
 
-	public String getCategory() {
+	public List<String> getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(List<String> category) {
 		this.category = category;
 	}
 

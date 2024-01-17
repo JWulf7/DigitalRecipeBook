@@ -5,5 +5,5 @@ import jakarta.persistence.Entity;
 //@Entity
 public enum EaseLevel {
 
-	EASY, EASYMEDIUM, MEDIUM, MEDIUMHARD, HARD
+	EASY, EASYMEDIUM, MEDIUM, MEDIUMHARD, HARD, EASELEVEL
 }

@@ -5,5 +5,5 @@ import jakarta.persistence.Entity;
 //@Entity
 public enum FoodorDrink {
 
-	FOOD, DRINK
+	FOOD, DRINK, FOODORDRINK
 }

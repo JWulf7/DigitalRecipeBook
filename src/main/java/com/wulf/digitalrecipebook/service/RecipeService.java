@@ -130,7 +130,9 @@ public class RecipeService {
 		System.out.println("MYLOGGER : mapped incoming RecipeDto to Recipe classes");
 		// increment version
 	  	Recipe oldrecipe = recipeRepository.findByName(recipe.getName());
-	  	recipe.setVersion((oldrecipe.getVersion()+1)); 
+	  	recipe.setVersion((oldrecipe.getVersion()+1));
+	  	// keep old created date
+	  	recipe.setCreated(oldrecipe.getCreated());
 	  	// check ingredients in DB before saving recipe 
 	  	ingredientCheck(recipe);
 	  	equipmentCheck(recipe);
