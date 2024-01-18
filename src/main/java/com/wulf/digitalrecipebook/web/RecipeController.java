@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wulf.digitalrecipebook.dto.RecipeDto;
 import com.wulf.digitalrecipebook.service.RecipeService;
 
-@CrossOrigin("*")
+@CrossOrigin("*") // allowing all incoming clients
 @RestController
 @RequestMapping("/api/recipes")
 public class RecipeController {
