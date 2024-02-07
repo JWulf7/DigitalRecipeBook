@@ -38,12 +38,27 @@ public class RecipeService {
 
 	List<Recipe> recipes = new ArrayList();
 
-	// temporarty method just for initial testing/setup
-	public Recipe createNewRecipe(String name) {
+	// temporarty method just for initial testing/setup.... maybe not just initial....
+	public Recipe createNewRecipeInitial(String name) {
 		Recipe recipe = new Recipe(name);
 		recipe.setCreated(LocalDateTime.now());
 		return recipe;
 
+	}
+	
+	public RecipeDto createNewRecipe(RecipeDto dto) {
+		System.out.println("MYLOGGER : starting RecipeService Class.createNewRecipe(recipeDto)"); 
+		// save new recipe entry to DB w/ name
+		System.out.println("MYLOGGER : RecipeService Class.createNewRecipe() : about to call RecipeService.addRecipe(dto.getName())"); 
+		RecipeDto dbDto = addRecipe(dto.getName());
+		// set the incoming dto's version, id, and date created to the values just created in DB
+		dto.setVersion(dbDto.getVersion());
+		dto.setId(dbDto.getId());
+		dto.setCreated(dbDto.getCreated());
+		// may want to get rid of null values here??? for the alldates etc. arrays...
+		
+		// update the new DB entry w/ remainder of incoming dto's info and return
+		return updateRecipe(dto);
 	}
 
 	// temporary method to fillout a few recipes
@@ -88,7 +103,10 @@ public class RecipeService {
 	 */
 
 	public RecipeDto addRecipe(String name) {
-		Recipe recipe = recipeRepository.save(createNewRecipe(name));
+		System.out.println("MYLOGGER : starting RecipeService Class.addRecipe(name) "); 
+		System.out.println("MYLOGGER : RecipeService Class.addRecipe(name) : calling recipe = recipeRepository.save(createNewRecipeInitial(name)) "); 
+		Recipe recipe = recipeRepository.save(createNewRecipeInitial(name));
+		System.out.println("MYLOGGER : RecipeService Class.addRecipe(name) : recipe = " + recipe);
 		if (null != recipe) {
 			recipeNameRepository.save(new RecipeName(recipe.getId(), recipe.getName()));
 		}
@@ -151,11 +169,15 @@ public class RecipeService {
 	  		System.out.println("MYLOGGER : in RecipeService Class.updateRecipe() : updating allDatesUpdated, in if statement, after recipe should now have full set of updated list");
 	  		System.out.println("MYLOGGER : in RecipeService Class.updateRecipe() : updating allDatesUpdated, in if statement, after recipe should now have full set of updated list; recipe.getAllDatesUpdated() -> " + recipe.getAllDatesUpdated());
 	  	}
-	  	
+	  	System.out.println("MYLOGGER : in RecipeService Class.updateRecipe() : about to save updated recipe to DB -> " + recipe);
 	  	// update recipe in DB 
 	  	Recipe updatedRecipe = recipeRepository.save(recipe); 
+	  	System.out.println("MYLOGGER : in RecipeService Class.updateRecipe() : saved updated recipe in DB... updatedRecipe -> " + updatedRecipe);
 	  	// convert to and return Dto to controller 
-	  	RecipeDto updatedRecipeDto = RecipeMapper.mapToRecipeDto(updatedRecipe); return updatedRecipeDto; 
+	  	RecipeDto updatedRecipeDto = RecipeMapper.mapToRecipeDto(updatedRecipe); 
+	  	System.out.println("MYLOGGER : in RecipeService Class.updateRecipe() : converting to recipeDto -> " + updatedRecipeDto);
+	  	System.out.println("MYLOGGER : in RecipeService Class.updateRecipe() : returning updatedRecipeDto");
+	  	return updatedRecipeDto; 
   	}
 	 
 

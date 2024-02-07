@@ -14,7 +14,7 @@ import jakarta.persistence.ManyToMany;
 
 @Entity
 @Embeddable
-public class Ingredient implements Serializable{
+public class Ingredient implements Serializable, Comparable<Ingredient>{
 
 	@Id
 	public String ingredientName;
@@ -67,6 +67,13 @@ public class Ingredient implements Serializable{
 	public String toString() {
 		return ingredientName;
 	}
+
+@Override
+public int compareTo(Ingredient o) {
+	// temp fix... need to maybe look up quantities?...
+
+	return this.ingredientName.compareToIgnoreCase(o.ingredientName);
+}
 	
 	
 	
