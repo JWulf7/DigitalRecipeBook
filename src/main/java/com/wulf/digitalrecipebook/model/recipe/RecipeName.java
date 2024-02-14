@@ -56,19 +56,27 @@ public class RecipeName {
 
 	@Override
 	public boolean equals(Object obj) {
+		// messing w/ this 
+		System.out.println("MYLOGGER : in RecipeName Class.equals() : this -> " + this);
+		System.out.println("MYLOGGER : in RecipeName Class.equals() : obj -> " + obj);
+		if ((this.getId() == 0) && (this.getName().equals(obj)))
+		//
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		System.out.println("MYLOGGER : in RecipeName Class.equals() : after most if statements");
 		RecipeName other = (RecipeName) obj;
 		return id == other.id && Objects.equals(name, other.name);
 	}
 
+	// messed w/ this
 	@Override
 	public String toString() {
 		return "RecipeName [id=" + id + ", name=" + name + "]";
+		//return name;
 	}
 	
 	
