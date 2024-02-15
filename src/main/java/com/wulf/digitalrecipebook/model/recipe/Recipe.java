@@ -61,6 +61,7 @@ public class Recipe implements Serializable{
 	
 	//private IngredientsList ingredientsList;
 	
+	// this is a list of the steps
 	private List<String> method = new ArrayList();
 	
 	private int servings;
