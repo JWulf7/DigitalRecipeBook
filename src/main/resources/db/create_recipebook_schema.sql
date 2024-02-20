@@ -19,3 +19,6 @@ create database recipebook_schema;
 --     FOREIGN KEY (`often_made_alongside_id`) 
 --     REFERENCES `recipe_name` (`id`)
 -- 	on delete cascade on update cascade;
+
+# to give more space to recipe method attribute.. it was too small for multiple steps
+alter table recipebook_schema.recipe modify method varbinary(3000);
