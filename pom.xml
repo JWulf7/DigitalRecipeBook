@@ -46,12 +46,22 @@
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 		-->
-		<dependency>
+		
+		<!-- (un)comment below dependency to switch to MySQL DB -->
+	<!--	<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
-		<!-- 	<version>8.3.0</version> -->
+		 	<version>8.3.0</version>  had this commented 
+		</dependency>-->
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<!-- (un)comment below dependency to switch to PostgreSQL DB -->
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>42.7.2</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
