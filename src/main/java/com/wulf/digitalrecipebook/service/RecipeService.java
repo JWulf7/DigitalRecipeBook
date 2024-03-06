@@ -130,6 +130,7 @@ public class RecipeService {
 	public RecipeDto getRecipeByName(String name) {
 		// get Recipe obj from Repo by name
 		Recipe recipe = recipeRepository.findByName(name);
+		System.out.println("MYLOGGER : RecipeService Class.getRecipeByName(name) : recipe = " + recipe);
 		// check if obj exists, (null check)
 		if (recipe != null) {
 			// if obj exists, map to Dto obj and return to controller

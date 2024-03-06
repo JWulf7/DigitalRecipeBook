@@ -22,3 +22,5 @@ create database recipebook_schema;
 
 # to give more space to recipe method attribute.. it was too small for multiple steps
 alter table recipebook_schema.recipe modify method varbinary(3000);
+
+alter table recipebook_schema.recipe modify notes varbinary(3000);

@@ -74,7 +74,8 @@ public class Recipe implements Serializable{
 	private Duration totalTime = Duration.ZERO;
 	
 	//@Enumerated(EnumType.STRING)
-	@OneToMany
+//	@OneToMany	commented this when trying to add a new recipe w/ existing equip... got SQL Error: 1062, SQLState: 23000
+	@ManyToMany
 	private List<Equipment> equipment = new ArrayList();
 	
 	@ManyToMany
