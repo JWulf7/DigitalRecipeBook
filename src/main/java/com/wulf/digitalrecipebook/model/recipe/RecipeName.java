@@ -1,8 +1,11 @@
 package com.wulf.digitalrecipebook.model.recipe;
 
+import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,7 +14,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class RecipeName {
+//@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+//@JsonPropertyOrder({"name"})
+public class RecipeName  implements Serializable{
 
 	@Id
 	@JsonIgnore
@@ -22,16 +27,30 @@ public class RecipeName {
 	@Column(nullable = false)
 	private String name;
 
+	
 	public RecipeName(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
-
+	
 	public RecipeName() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+//	public RecipeName(int id, String name) {
+//		super();
+//		this.id = id;
+//		this.name = name;
+//	}
+	
+//	public RecipeName(String name) {
+//		super();
+//		this.name = name;
+//	}
+
+
 	
 	public int getId() {
 		return id;
@@ -75,8 +94,9 @@ public class RecipeName {
 	// messed w/ this
 	@Override
 	public String toString() {
-		return "RecipeName [id=" + id + ", name=" + name + "]";
-		//return name;
+//		return "RecipeName [id=" + id + ", name=" + name + "]";
+		return name;
+//		return "name:" + name;
 	}
 	
 	
