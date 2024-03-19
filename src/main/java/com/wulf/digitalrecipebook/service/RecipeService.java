@@ -170,6 +170,8 @@ public class RecipeService {
 	  	if (recipeDto.getVersion() != 0) {
 	  		// increment version if dto version is not 0
 	  		recipe.setVersion((oldrecipe.getVersion()+1));
+	  		// might set the recipe ID here too???
+	  		recipe.setId(oldrecipe.getId());
 	  	} else {
 	  		// if newly created recipe.. dto version should have been set to 0, now setting it to 1
 	  		recipe.setVersion(1);
