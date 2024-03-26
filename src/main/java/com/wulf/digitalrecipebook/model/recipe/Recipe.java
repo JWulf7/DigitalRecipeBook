@@ -79,7 +79,7 @@ public class Recipe implements Serializable{
 	private List<Equipment> equipment = new ArrayList();
 	
 	@ManyToMany
-	private Set<RecipeName> pairings = new HashSet<>();
+	private Set<RecipeName> pairings = new HashSet<>();	// maybe this is drink pairings??... could be any recipe this has ever been made in same meal with??
 
 	/**
 	//@OneToMany
@@ -100,7 +100,7 @@ public class Recipe implements Serializable{
 	private List<Blob> pictures = new ArrayList();
 	
 	@ManyToMany
-	private List<RecipeName> oftenMadeAlongside = new ArrayList(); // in the same meal/ dish/ within 7 days of that recipe/ etc
+	private List<RecipeName> oftenMadeAlongside = new ArrayList(); // in the same meal/ dish/ within 7 days of that recipe/ etc....... could be any recipe this has ever been made in same meal with??
 	
 	@Enumerated(EnumType.STRING)
 	private Seasonality seasonality = Seasonality.ANY;
@@ -108,7 +108,7 @@ public class Recipe implements Serializable{
 	private List<String> tags = new ArrayList();
 
 	@ManyToMany
-	private List<RecipeName> pairsWith = new ArrayList();
+	private List<RecipeName> pairsWith = new ArrayList();	// could be other recipes that literally go with or depend on this recipe??? .. i.e. pizza dough recipe -> pepperoni pizza??.. ; vanilla bourbon pecan butter -> banana bread etc. 
 	
 	private Boolean notesInPlaceCollapse = true;
 	
@@ -137,7 +137,7 @@ public class Recipe implements Serializable{
 	private List<RecipeName> dishesThatAlsoUseLeftoverIngredients = new ArrayList();
 	
 	@ManyToMany
-	private List<RecipeName> mealAffinities = new ArrayList(); // this goes really well w/ _ meals in the week 
+	private List<RecipeName> mealAffinities = new ArrayList(); // this goes really well w/ _ meals in the week .... could be any recipe this has ever been made in same meal with??
 	
 	// date/time
 	
