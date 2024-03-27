@@ -140,9 +140,100 @@ alter table recipebook_schema.recipe modify notes varbinary(3000);
 --     REFERENCES `recipe_name` (`id`)
 -- 	on delete cascade on update cascade;
 
+######### planned_meal_menu
+-- alter table recipebook_schema.planned_meal_menu
+-- 	drop constraint `FKgb7uwj6rfvo7uq3djlsavynjm`;
+--     
+-- alter table recipebook_schema.planned_meal_menu
+-- 	add constraint `FKgb7uwj6rfvo7uq3djlsavynjm`
+--     FOREIGN KEY (`planned_meal_id`) 
+--     REFERENCES `planned_meal` (`id`)
+-- 	on delete cascade on update cascade;
+--     
+-- alter table recipebook_schema.planned_meal_menu
+-- 	drop constraint `FKkoksq33goxjvixbo8h6lrlwty`;
+--     
+-- alter table recipebook_schema.planned_meal_menu
+-- 	add constraint `FKkoksq33goxjvixbo8h6lrlwty`
+--     FOREIGN KEY (`menu_id`) 
+--     REFERENCES `recipe_name` (`id`)
+-- 	on delete cascade on update cascade;
 
+######### schedule_actual_meals
+-- alter table recipebook_schema.schedule_actual_meals
+-- 	drop constraint `FKbsp2tqe7xumk4c9g49qejufi3`;
+--     
+-- alter table recipebook_schema.schedule_actual_meals
+-- 	add constraint `FKbsp2tqe7xumk4c9g49qejufi3`
+--     FOREIGN KEY (`schedule_date`) 
+--     REFERENCES `schedule` (`date`)
+-- 	on delete cascade on update cascade;
+--     
+-- alter table recipebook_schema.schedule_actual_meals
+-- 	drop constraint `FKc5o3bq207035gr5l61xvtyxlc`;
+--     
+-- alter table recipebook_schema.schedule_actual_meals
+-- 	add constraint `FKc5o3bq207035gr5l61xvtyxlc`
+--     FOREIGN KEY (`actual_meals_id`) 
+--     REFERENCES `planned_meal` (`id`)
+-- 	on delete cascade on update cascade;
 
+######### schedule_all_meals_planned
+-- alter table recipebook_schema.schedule_all_meals_planned
+-- 	drop constraint `FK69dms9tj697gj0a3n8qjpd7la`;
+--     
+-- alter table recipebook_schema.schedule_all_meals_planned
+-- 	add constraint `FK69dms9tj697gj0a3n8qjpd7la`
+--     FOREIGN KEY (`schedule_date`) 
+--     REFERENCES `schedule` (`date`)
+-- 	on delete cascade on update cascade;
+--     
+-- alter table recipebook_schema.schedule_all_meals_planned
+-- 	drop constraint `FKkuxtcppvpwmguv40j5a4lt6mi`;
+--     
+-- alter table recipebook_schema.schedule_all_meals_planned
+-- 	add constraint `FKkuxtcppvpwmguv40j5a4lt6mi`
+--     FOREIGN KEY (`all_meals_planned_id`) 
+--     REFERENCES `planned_meal` (`id`)
+-- 	on delete cascade on update cascade;
 
+######### schedule_todays_planned_meals
+-- alter table recipebook_schema.schedule_todays_planned_meals
+-- 	drop constraint `FK5pnd91ic1p50dxmjqhh8gxrxj`;
+--     
+-- alter table recipebook_schema.schedule_todays_planned_meals
+-- 	add constraint `FK5pnd91ic1p50dxmjqhh8gxrxj`
+--     FOREIGN KEY (`schedule_date`) 
+--     REFERENCES `schedule` (`date`)
+-- 	on delete cascade on update cascade;
+--     
+-- alter table recipebook_schema.schedule_todays_planned_meals
+-- 	drop constraint `FKl4ulwdee1fg2e3yewx3gaeb2w`;
+--     
+-- alter table recipebook_schema.schedule_todays_planned_meals
+-- 	add constraint `FKl4ulwdee1fg2e3yewx3gaeb2w`
+--     FOREIGN KEY (`todays_planned_meals_id`) 
+--     REFERENCES `planned_meal` (`id`)
+-- 	on delete cascade on update cascade;
+
+######### schedule_tomorrows_planned_meals
+-- alter table recipebook_schema.schedule_tomorrows_planned_meals
+-- 	drop constraint `FKpgqppoxi9e7xgpqd8m4ah5k05`;
+--     
+-- alter table recipebook_schema.schedule_tomorrows_planned_meals
+-- 	add constraint `FKpgqppoxi9e7xgpqd8m4ah5k05`
+--     FOREIGN KEY (`schedule_date`) 
+--     REFERENCES `schedule` (`date`)
+-- 	on delete cascade on update cascade;
+--     
+-- alter table recipebook_schema.schedule_tomorrows_planned_meals
+-- 	drop constraint `FKtrjh9lyfb5x695nlluoeh78x5`;
+--     
+-- alter table recipebook_schema.schedule_tomorrows_planned_meals
+-- 	add constraint `FKtrjh9lyfb5x695nlluoeh78x5`
+--     FOREIGN KEY (`tomorrows_planned_meals_id`) 
+--     REFERENCES `planned_meal` (`id`)
+-- 	on delete cascade on update cascade;
 
 
 
