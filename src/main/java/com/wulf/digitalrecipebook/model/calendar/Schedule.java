@@ -13,6 +13,7 @@ import com.wulf.digitalrecipebook.model.recipe.PlannedMeal;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 //public class Schedule implements Serializable{
@@ -21,8 +22,10 @@ public class Schedule {
 	@Id
 	private LocalDate date = LocalDate.now();
 	
+	@OneToMany
 	private List<PlannedMeal> todaysPlannedMeals = new ArrayList<>();
 	
+	@OneToMany
 	private List<PlannedMeal> tomorrowsPlannedMeals = new ArrayList<>();
 	
 	private List<String> prepList = new ArrayList<>();
