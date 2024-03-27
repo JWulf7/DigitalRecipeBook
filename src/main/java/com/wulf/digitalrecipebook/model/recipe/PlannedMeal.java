@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -19,6 +21,7 @@ public class PlannedMeal implements Serializable{
 //public class PlannedMeal {
 
 	@Id
+	@JsonIgnore
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	

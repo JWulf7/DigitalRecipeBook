@@ -16,8 +16,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-//public class Schedule implements Serializable{
-public class Schedule {
+public class Schedule implements Serializable{
+//public class Schedule {
 	
 	@Id
 	private LocalDate date;
@@ -36,7 +36,7 @@ public class Schedule {
 	private List<String> notes = new ArrayList<>();
 	
 	@ElementCollection
-	private Map<LocalDate, PlannedMeal> actualMeals = new HashMap<>();
+	private Map<LocalDate, PlannedMeal> actualMeals = new HashMap<>();	// this I think might want to change Types???
 
 	public Schedule() {
 		super();

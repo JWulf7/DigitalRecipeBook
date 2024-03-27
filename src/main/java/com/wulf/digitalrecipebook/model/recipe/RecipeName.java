@@ -95,7 +95,7 @@ public class RecipeName  implements Serializable{
 	@Override
 	public String toString() {
 //		return "RecipeName [id=" + id + ", name=" + name + "]";
-		return name;
+		return name;	// this was last iteration before messed
 //		return "name:" + name;
 	}
 	
