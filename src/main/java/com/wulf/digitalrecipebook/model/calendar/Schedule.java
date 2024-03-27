@@ -20,7 +20,7 @@ import jakarta.persistence.OneToMany;
 public class Schedule {
 	
 	@Id
-	private LocalDate date = LocalDate.now();
+	private LocalDate date;
 	
 	@OneToMany
 	private List<PlannedMeal> todaysPlannedMeals = new ArrayList<>();
